@@ -55,7 +55,8 @@ class _EntryPointState extends State<EntryPoint> {
         leading: const SizedBox(),
         leadingWidth: 0,
         centerTitle: false,
-        title: SvgPicture.asset(
+        title: //Text("Elite Mart",style: TextStyle(fontSize: 23,fontWeight: FontWeight.w700,color: Colors.black38),),
+        SvgPicture.asset(
           "assets/logo/Shoplon.svg",
           colorFilter: ColorFilter.mode(
               Theme.of(context).iconTheme.color!, BlendMode.srcIn),

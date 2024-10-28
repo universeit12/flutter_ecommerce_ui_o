@@ -49,7 +49,16 @@ class PopularProducts extends StatelessWidget {
                 dicountpercent: demoPopularProducts[index].dicountpercent,
                 press: () {
                  // Navigator.pushNamed(context, productDetailsScreenRoute, arguments: index.isEven);
-                  Get.to(()=> ProductDetailsScreen(isProductAvailable: index.isEven,product: demoFlashSaleProducts[index],));
+                  if (index < demoFlashSaleProducts.length) {
+                    Get.to(() => ProductDetailsScreen(
+                      isProductAvailable: index.isEven,
+                      product: demoFlashSaleProducts[index],
+                    ));
+                  } else {
+                    // Handle the case when index is out of range (e.g., show an error or fallback)
+
+                    Get.snackbar("Error", "Not Found");
+                  }
                 },
               ),
             ),

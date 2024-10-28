@@ -214,7 +214,7 @@ Route<dynamic> generateRoute(RouteSettings settings) {
     //   );
     case notificationsScreenRoute:
       return MaterialPageRoute(
-        builder: (context) => const NotificationsScreen(),
+        builder: (context) =>  NotificationsScreen(),
       );
     case noNotificationScreenRoute:
       return MaterialPageRoute(

@@ -16,7 +16,7 @@ class ReviewScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text("Review Order"),
       ),
-      body: Padding(
+      body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -49,7 +49,6 @@ class ReviewScreen extends StatelessWidget {
                 );
               }
             }),
-           // const Divider(height: 30, thickness: 1.5),
             const SizedBox(height: 30),
 
             // Order Summary Section
@@ -89,7 +88,6 @@ class ReviewScreen extends StatelessWidget {
                 )),
               ],
             ),
-
             const SizedBox(height: 30),
 
             // Payment Method Section
@@ -116,27 +114,29 @@ class ReviewScreen extends StatelessWidget {
                 ],
               );
             }),
-            const Spacer(),
 
             // Pay Button
-            SizedBox(
-              width: double.infinity,
-              child: ElevatedButton(
-                onPressed: () {
-                  // Show appropriate message based on selected payment method
-                  final paymentMessage = cartController.paymentMethod.value == 'Cash on Delivery'
-                      ? 'You will pay with Cash on Delivery.'
-                      : 'You will pay via Online Payment.';
-                  Get.snackbar('Payment', paymentMessage);
-                  cartController.completeOrder();
-                  Get.snackbar('Payment Successful', 'Your order has been placed');
-                  Get.off(() => OrderScreen());
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 16.0),
+              child: SizedBox(
+                width: double.infinity,
+                child: ElevatedButton(
+                  onPressed: () {
+                    // Show appropriate message based on selected payment method
+                    final paymentMessage = cartController.paymentMethod.value == 'Cash on Delivery'
+                        ? 'You will pay with Cash on Delivery.'
+                        : 'You will pay via Online Payment.';
+                    Get.snackbar('Payment', paymentMessage);
 
-                },
-                child: Obx(() => Text(
-                  '৳ ${(cartController.totalPrice.value).toStringAsFixed(2)}   Pay',
-                  style: const TextStyle(fontWeight: FontWeight.bold),
-                )),
+                    cartController.completeOrder();
+                    Get.snackbar('Payment Successful', 'Your order has been placed');
+                    Get.off(() => OrderScreen());
+                  },
+                  child: Obx(() => Text(
+                    '৳ ${(cartController.totalPrice.value).toStringAsFixed(2)}   Pay',
+                    style: const TextStyle(fontWeight: FontWeight.bold),
+                  )),
+                ),
               ),
             ),
           ],

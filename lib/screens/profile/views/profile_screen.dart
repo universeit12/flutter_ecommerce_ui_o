@@ -12,6 +12,7 @@ import '../../bookmark/views/bookmark_screen.dart';
 import '../../checkout/views/order_screen.dart';
 import 'components/profile_card.dart';
 import 'components/profile_menu_item_list_tile.dart';
+import 'components/user_screen.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
@@ -21,6 +22,7 @@ class ProfileScreen extends StatelessWidget {
     return Scaffold(
       body: ListView(
         children: [
+          SizedBox(height: 40,),
           ProfileCard(
             name: "Sepide",
             email: "theflutterway@gmail.com",
@@ -28,27 +30,23 @@ class ProfileScreen extends StatelessWidget {
             // proLableText: "Sliver",
             // isPro: true, if the user is pro
             press: () {
-              Navigator.pushNamed(context, userInfoScreenRoute);
+              //Navigator.pushNamed(context, userInfoScreenRoute);
+
+              Get.to(()=>const UserScreen());
             },
           ),
-          Padding(
-            padding: const EdgeInsets.symmetric(
-                horizontal: defaultPadding, vertical: defaultPadding * 1.5),
-            child: GestureDetector(
-              onTap: () {},
-              child: const AspectRatio(
-                aspectRatio: 1.8,
-                child:
-                    NetworkImageWithLoader("https://i.imgur.com/dz0BBom.png"),
-              ),
-            ),
-          ),
+          SizedBox(height: 20,),
+
+
+
 
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: defaultPadding),
-            child: Text(
-              "Account",
-              style: Theme.of(context).textTheme.titleSmall,
+            child: Center(
+              child: Text(
+                "My Account",
+                style: TextStyle(color: Colors.black,fontSize: 28),
+              ),
             ),
           ),
           const SizedBox(height: defaultPadding / 2),
@@ -60,11 +58,11 @@ class ProfileScreen extends StatelessWidget {
               Get.to(()=> OrderScreen());
             },
           ),
-          ProfileMenuListTile(
+          /*ProfileMenuListTile(
             text: "Returns",
             svgSrc: "assets/icons/Return.svg",
             press: () {},
-          ),
+          ),*/
           ProfileMenuListTile(
             text: "Wishlist",
             svgSrc: "assets/icons/Wishlist.svg",
@@ -79,6 +77,7 @@ class ProfileScreen extends StatelessWidget {
               Navigator.pushNamed(context, addressesScreenRoute);
             },
           ),
+          /*
           ProfileMenuListTile(
             text: "Payment",
             svgSrc: "assets/icons/card.svg",
@@ -92,7 +91,7 @@ class ProfileScreen extends StatelessWidget {
             press: () {
               Navigator.pushNamed(context, walletScreenRoute);
             },
-          ),
+          ),*//*
           const SizedBox(height: defaultPadding),
           Padding(
             padding: const EdgeInsets.symmetric(
@@ -133,6 +132,7 @@ class ProfileScreen extends StatelessWidget {
               Navigator.pushNamed(context, selectLanguageScreenRoute);
             },
           ),
+          */
           ProfileMenuListTile(
             text: "Location",
             svgSrc: "assets/icons/Location.svg",
@@ -162,8 +162,15 @@ class ProfileScreen extends StatelessWidget {
           ),
           const SizedBox(height: defaultPadding),
 
+          SizedBox(
+            width: 70,
+            child: TextButton.icon(
+              icon: Icon(Icons.logout),
+                onPressed: (){}, label: Text("Log out",style: TextStyle(fontSize: 17),)),
+          ),
+
           // Log Out
-          ListTile(
+         /* ListTile(
             onTap: () {},
             minLeadingWidth: 24,
             leading: SvgPicture.asset(
@@ -179,7 +186,7 @@ class ProfileScreen extends StatelessWidget {
               "Log Out",
               style: TextStyle(color: errorColor, fontSize: 14, height: 1),
             ),
-          )
+          )*/
         ],
       ),
     );

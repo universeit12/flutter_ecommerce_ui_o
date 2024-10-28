@@ -19,9 +19,9 @@ class ProductBuyNowScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Set the unit price for the product when the screen is loaded
-    addToCartController.setUnitPrice(product!.priceAfetDiscount?.toDouble() ?? product!.price.toDouble());
-   // final CartController cartController = Get.find<CartController>(); // Use the CartController
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+    addToCartController.setUnitPrice(product?.priceAfetDiscount ?? product!.price.toDouble());
+    });
 
     return Scaffold(
       bottomNavigationBar: Obx(() {
