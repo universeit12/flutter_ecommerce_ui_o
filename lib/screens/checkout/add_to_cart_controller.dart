@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:intl/intl.dart';
+import 'package:uuid/uuid.dart';
 import '../../models/address_model.dart';
+import '../../models/order_model.dart';
 import '../../models/product_model.dart';
 
 class AddToCartController extends GetxController {
@@ -20,12 +23,42 @@ class AddToCartController extends GetxController {
   var deliveryLocation = "Inside Dhaka".obs;
   var paymentMethod = 'Cash on Delivery'.obs; // Default payment method
 
-  var orders = <ProductModel>[].obs;  // Track successfully purchased products
+  var orders = <OrderModel>[].obs; // Track successfully purchased products
 
+  final uuid =  Uuid();
+
+// Function to complete an order and add it to the orders list
   void completeOrder() {
-    orders.addAll(cartItems);  // Add all cart items to orders
-    cartItems.clear();         // Clear the cart
-    //updateTotalPrice();
+    if (cartItems.isEmpty) return;
+
+    // Calculate total quantity and price for the order
+    int totalQuantity = quantities.fold(0, (sum, qty) => sum + qty);
+    double subtotal = 0.0;
+    for (int i = 0; i < cartItems.length; i++) {
+      final price = cartItems[i].priceAfetDiscount?.toDouble() ?? cartItems[i].price.toDouble();
+      subtotal += price * quantities[i];
+    }
+    double totalPrice = subtotal + deliveryCharge.value;
+
+    // Create an order ID, status, and date
+    String orderId = DateTime.now().millisecondsSinceEpoch.toString();
+    String orderDate = DateFormat('yyyy-MM-dd – kk:mm').format(DateTime.now());
+    String status = "Pending";
+
+    // Add the completed order to orders
+    orders.add(OrderModel(
+      orderId: orderId,
+      totalQuantity: totalQuantity,
+      totalPrice: totalPrice,
+      orderStatus: status,
+      orderDate: orderDate,
+      address: address.value,
+      items: List.from(cartItems),
+    ));
+
+    // Clear cart items after order completion
+    cartItems.clear();
+    quantities.clear();
   }
 
   // Method to update delivery charge based on selection

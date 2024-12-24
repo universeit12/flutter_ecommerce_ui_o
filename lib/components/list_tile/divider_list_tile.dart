@@ -31,7 +31,7 @@ class DividerListTile extends StatelessWidget {
                   "assets/icons/miniRight.svg",
                   colorFilter: ColorFilter.mode(
                       Theme.of(context).iconTheme.color!.withOpacity(0.4),
-                      BlendMode.srcIn),
+                      BlendMode.srcIn),width: 28,
                 )
               : null,
         ),

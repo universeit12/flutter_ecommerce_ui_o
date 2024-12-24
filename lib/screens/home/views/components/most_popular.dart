@@ -50,7 +50,7 @@ class MostPopular extends StatelessWidget {
                 dicountpercent: demoPopularProducts[index].dicountpercent,
                 press: () {
                  // Navigator.pushNamed(context, productDetailsScreenRoute, arguments: index.isEven);
-                  Get.to(()=> ProductDetailsScreen(isProductAvailable: index.isEven,product: demoFlashSaleProducts[index],));
+                  Get.to(()=> ProductDetailsScreen(isProductAvailable: index.isEven,product: demoPopularProducts[index],));
                 },
               ),
             ),

@@ -122,6 +122,12 @@ class ReviewScreen extends StatelessWidget {
                 width: double.infinity,
                 child: ElevatedButton(
                   onPressed: () {
+
+                    if(cartController.address.value == null){
+                      Get.snackbar("Address", "Please enter an address");
+                      return;
+                    }
+
                     // Show appropriate message based on selected payment method
                     final paymentMessage = cartController.paymentMethod.value == 'Cash on Delivery'
                         ? 'You will pay with Cash on Delivery.'

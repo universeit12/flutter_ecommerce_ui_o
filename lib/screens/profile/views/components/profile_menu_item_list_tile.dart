@@ -19,11 +19,12 @@ class ProfileMenuListTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DividerListTile(
+
       minLeadingWidth: 24,
       leading: SvgPicture.asset(
         svgSrc,
-        height: 24,
-        width: 24,
+        height: 30,
+        width: 30,
         colorFilter: ColorFilter.mode(
           Theme.of(context).iconTheme.color!,
           BlendMode.srcIn,
@@ -31,7 +32,7 @@ class ProfileMenuListTile extends StatelessWidget {
       ),
       title: Text(
         text,
-        style: const TextStyle(fontSize: 14, height: 1),
+        style: const TextStyle(fontSize: 16, height: 1,fontWeight: FontWeight.w500),
       ),
       press: press,
       isShowDivider: isShowDivider,
