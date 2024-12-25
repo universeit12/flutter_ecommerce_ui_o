@@ -6,7 +6,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../constants.dart';
-
+var a=5;
 class BuyFullKit extends StatefulWidget {
   const BuyFullKit({super.key, required this.images});
 
